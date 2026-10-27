@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Khai báo các biến đơn lẻ cơ bản
         String maSach, tenSach, tacGia;
         int namXuatBan, soLuong, chonLoai;
         double donGia;
