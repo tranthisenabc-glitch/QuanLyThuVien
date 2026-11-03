@@ -1,97 +1,103 @@
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String maSach, tenSach, tacGia;
-        int namXuatBan, soLuong, chonLoai;
-        double donGia;
-        System.out.print("Nhap ma sach: ");
-        maSach = sc.nextLine();
-        System.out.print("Nhap ten sach: ");
-        tenSach = sc.nextLine();
-        System.out.print("Nhap tac gia: ");
-        tacGia = sc.nextLine();
-        System.out.print("Nhap nam xuat ban: ");
-        namXuatBan = Integer.parseInt(sc.nextLine());
-        System.out.print("Nhap don gia: ");
-        donGia = Double.parseDouble(sc.nextLine());
-        System.out.print("Nhap so luong: ");
-        soLuong = Integer.parseInt(sc.nextLine());
+        String[] maSach = new String[100];
+        String[] tenSach = new String[100];
+        String[] tacGia = new String[100];
+        int[] namXuatBan = new int[100];
+        int[] soLuong = new int[100];
+        double[] donGia = new double[100];
 
-        System.out.println("\n--- CHON LOAI SACH ---");
-        System.out.println("1. Sach giao khoa");
-        System.out.println("2. Sach tham khao");
-        System.out.println("3. Sach chuyen nganh");
-        System.out.println("4. Sach khac");
-        System.out.print("Nhap lua chon (1-4): ");
-        chonLoai = Integer.parseInt(sc.nextLine());
+        int n = 0;
+        int chon;
 
-        String loaiSach = "";
-        switch (chonLoai) {
-            case 1:
-                loaiSach = "Sách giáo khoa";
-                break;
-            case 2:
-                loaiSach = "Sách tham khảo";
-                break;
-            case 3:
-                loaiSach = "Sách chuyên ngành";
-                break;
-            case 4:
-                loaiSach = "Sách khác";
-                break;
-            default:
-                loaiSach = "Không xác định";
-                break;
+        for (;;) {
+            System.out.println("\n========== MENU QUAN LY SACH ==========");
+            System.out.println("1. Nhap n sach");
+            System.out.println("2. Tinh tong so luong va tong gia tri sach");
+            System.out.println("3. Tim sach theo ma");
+            System.out.println("4. Hien thi danh sach sach");
+            System.out.println("0. Thoat");
+            System.out.print("Nhap lua chon: ");
+            chon = Integer.parseInt(sc.nextLine());
+
+            switch (chon) {
+                case 1:
+                    System.out.print("Nhap so luong sach can nhap: ");
+                    n = Integer.parseInt(sc.nextLine());
+                    for (int i = 0; i < n; i++) {
+                        System.out.println("\nNhap thong tin sach thu " + (i + 1));
+                        System.out.print("Nhap ma sach: ");
+                        maSach[i] = sc.nextLine();
+                        System.out.print("Nhap ten sach: ");
+                        tenSach[i] = sc.nextLine();
+                        System.out.print("Nhap tac gia: ");
+                        tacGia[i] = sc.nextLine();
+                        System.out.print("Nhap nam xuat ban: ");
+                        namXuatBan[i] = Integer.parseInt(sc.nextLine());
+                        System.out.print("Nhap don gia: ");
+                        donGia[i] = Double.parseDouble(sc.nextLine());
+                        System.out.print("Nhap so luong: ");
+                        soLuong[i] = Integer.parseInt(sc.nextLine());
+                    }
+                    break;
+                case 2:
+                    int tongSoLuong = 0;
+                    double tongGiaTri = 0;
+                    for (int i = 0; i < n; i++) {
+                        tongSoLuong += soLuong[i];
+                        tongGiaTri += donGia[i] * soLuong[i];
+                    }
+                    System.out.println("\n========== KET QUA ==========");
+                    System.out.println("Tong so luong sach: " + tongSoLuong);
+                    System.out.println("Tong gia tri sach: " + tongGiaTri);
+                    break;
+                case 3:
+                    System.out.print("Nhap ma sach can tim: ");
+                    String maCanTim = sc.nextLine();
+                    int timThay = 0;
+                    for (int i = 0; i < n; i++) {
+                        if (maSach[i].equalsIgnoreCase(maCanTim)) {
+                            System.out.println("\n========== THONG TIN SACH ==========");
+                            System.out.println("Ma sach: " + maSach[i]);
+                            System.out.println("Ten sach: " + tenSach[i]);
+                            System.out.println("Tac gia: " + tacGia[i]);
+                            System.out.println("Nam xuat ban: " + namXuatBan[i]);
+                            System.out.println("Don gia: " + donGia[i]);
+                            System.out.println("So luong: " + soLuong[i]);
+
+                            timThay = 1;
+                        }
+                    }
+                    if (timThay == 0) {
+                        System.out.println("Khong tim thay sach co ma: " + maCanTim);
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("\n========== DANH SACH SACH ==========");
+
+                    for (int i = 0; i < n; i++) {
+                        System.out.println("\nSach thu " + (i + 1));
+                        System.out.println("Ma sach: " + maSach[i]);
+                        System.out.println("Ten sach: " + tenSach[i]);
+                        System.out.println("Tac gia: " + tacGia[i]);
+                        System.out.println("Nam xuat ban: " + namXuatBan[i]);
+                        System.out.println("Don gia: " + donGia[i]);
+                        System.out.println("So luong: " + soLuong[i]);
+                    }
+                    break;
+
+                case 0:
+                    System.out.println("Da thoat chuong trinh!");
+                    sc.close();
+                    return;
+
+                default:
+                    System.out.println("Lua chon khong hop le!");
+            }
         }
-
-        double thanhTien = donGia * soLuong;
-        double phiVanChuyen = thanhTien * 0.05;
-        double tongTienNhap = thanhTien + phiVanChuyen;
-
-        System.out.println("\n THONG TIN SACH ");
-        System.out.println("Ma sach : " + maSach);
-        System.out.println("Ten sach : " + tenSach);
-        System.out.println("Tac gia : " + tacGia);
-        System.out.println("Loai sach : " + loaiSach);
-        System.out.println("Nam xuat ban : " + namXuatBan);
-        System.out.println("Don gia: " + donGia);
-        System.out.println("So luong: " + soLuong);
-
-        System.out.println("\n KET QUA TINH TOAN ");
-        System.out.println("Thanh tien: " + thanhTien);
-        System.out.println("Phi van chuyen : " + phiVanChuyen);
-        System.out.println("Tong tien nhap : " + tongTienNhap);
-
-        System.out.println("\n--- DANH GIA & QUYET DINH ---");
-        if (donGia > 0 && soLuong >= 0 && namXuatBan > 1000 && namXuatBan <= 2026) {
-            System.out.println("- Kiem tra hop le: Hop le");
-        } else {
-            System.out.println("- Kiem tra hop le: Khong hop le");
-        }
-
-        if (donGia < 50000) {
-            System.out.println("- Phan loai gia: Sach gia thap");
-        } else if (donGia <= 100000) {
-            System.out.println("- Phan loai gia: Sach gia trung binh");
-        } else if (donGia <= 200000) {
-            System.out.println("- Phan loai gia: Sach gia cao");
-        } else {
-            System.out.println("- Phan loai gia: Sach gia dac biet");
-        }
-
-        if (soLuong == 0) {
-            System.out.println("- Phan loai ton kho: Het sach");
-        } else if (soLuong <= 5) {
-            System.out.println("- Phan loai ton kho: Sap het");
-        } else if (soLuong <= 20) {
-            System.out.println("- Phan loai ton kho: Con it");
-        } else {
-            System.out.println("- Phan loai ton kho: Con nhieu");
-        }
-
-        sc.close();
     }
 }
