@@ -2,17 +2,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         String[] maSach = new String[100];
         String[] tenSach = new String[100];
         String[] tacGia = new String[100];
         int[] namXuatBan = new int[100];
         int[] soLuong = new int[100];
         double[] donGia = new double[100];
-
         int n = 0;
         int chon;
-
         for (;;) {
             System.out.println("\n========== MENU QUAN LY SACH ==========");
             System.out.println("1. Nhap n sach");
@@ -22,7 +19,6 @@ public class Main {
             System.out.println("0. Thoat");
             System.out.print("Nhap lua chon: ");
             chon = Integer.parseInt(sc.nextLine());
-
             switch (chon) {
                 case 1:
                     System.out.print("Nhap so luong sach can nhap: ");
