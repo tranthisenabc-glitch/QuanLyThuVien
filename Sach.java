@@ -1,15 +1,21 @@
-public class Sach {
-    String maSach;
-    String tieuDe;
-    String tacGia;
-    int namXuatBan;
-    int soLuong;
+public class Main {
+    public static void main(String[] args) {
+        Sach sach1 = new Sach(
+            "S01",
+            "Lap trinh Java",
+            "Nguyen Van A",
+            2025,
+            10
+        );
 
-    void hienThiThongTin() {
-        System.out.println("Ma sach: " + maSach);
-        System.out.println("Tieu de: " + tieuDe);
-        System.out.println("Tac gia: " + tacGia);
-        System.out.println("Nam xuat ban: " + namXuatBan);
-        System.out.println("So luong: " + soLuong);
+        System.out.println(" THONG TIN SACH ");
+        sach1.hienThiThongTin();
+
+        System.out.println("\nSUA THONG TIN SACH ");
+
+        sach1.setTieuDe("Lap trinh Java nang cao");
+        sach1.setSoLuong(20);
+
+        sach1.hienThiThongTin();
     }
 }
